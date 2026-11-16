@@ -84,11 +84,20 @@ describe 'resource_reference_without_whitespace' do
     end
 
     it 'detects one problem' do
-      expect(problems).to have(2).problem
+      expect(problems).to have(1).problem
     end
 
     it 'creates an error' do
       expect(problems).to contain_error(msg).on_line(1)
+    end
+  end
+
+  context 'a whitespace between reference and bracket without resources' do
+    let(:msg) { 'whitespce between reference type and title' }
+    let(:code) { "Package ['one'] ~> Service['two']" }
+
+    it 'detects one problem' do
+      expect(problems).to have(1).problem
     end
   end
 
