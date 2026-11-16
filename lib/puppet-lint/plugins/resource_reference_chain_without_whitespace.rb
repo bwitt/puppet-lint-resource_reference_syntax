@@ -8,7 +8,7 @@ PuppetLint.new_check(:resource_reference_chain_without_whitespace) do
       case check.type
       when :TYPE
 
-        if check.next_token.type == :WHITESPACE and check.next_code_token.type == :LBRACK
+        if check.next_token&.type == :WHITESPACE and check.next_code_token&.type == :LBRACK
           notify :error, {
             message: 'whitespce between reference type and title',
             line: check.line,

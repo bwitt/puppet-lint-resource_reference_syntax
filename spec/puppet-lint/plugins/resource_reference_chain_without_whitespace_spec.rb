@@ -15,4 +15,20 @@ describe 'resource_reference_chain_without_whitespace' do
       expect(problems).to contain_error(msg).on_line(1)
     end
   end
+
+  context 'a type at the end of the file' do
+    let(:code) { 'type Foo::Bar = Integer' }
+
+    it 'detects no problem' do
+      expect(problems).to have(0).problem
+    end
+  end
+
+  context 'a type followed by whitespace at the end of the file' do
+    let(:code) { 'type Foo::Bar = Integer ' }
+
+    it 'detects no problem' do
+      expect(problems).to have(0).problem
+    end
+  end
 end

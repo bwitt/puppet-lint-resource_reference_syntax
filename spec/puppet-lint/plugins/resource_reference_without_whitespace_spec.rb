@@ -99,4 +99,20 @@ describe 'resource_reference_without_whitespace' do
       expect(problems).to have(0).problem
     end
   end
+
+  context 'a reference at the end of the file' do
+    let(:code) { "package { 'one': ensure => present, } $ref = Package" }
+
+    it 'detects no problem' do
+      expect(problems).to have(0).problem
+    end
+  end
+
+  context 'a reference followed by whitespace at the end of the file' do
+    let(:code) { "package { 'one': ensure => present, } $ref = Package " }
+
+    it 'detects no problem' do
+      expect(problems).to have(0).problem
+    end
+  end
 end
